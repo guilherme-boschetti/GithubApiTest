@@ -1,4 +1,4 @@
-package br.com.test.githubapitest.controller;
+package br.com.test.githubapitest.controller.others;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,14 +11,9 @@ import com.google.zxing.integration.android.IntentResult;
 
 import androidx.appcompat.app.AppCompatActivity;
 import br.com.test.githubapitest.R;
+import br.com.test.githubapitest.controller.repositories.RepositoriesActivity;
 import br.com.test.githubapitest.util.SharedPreferencesUtil;
 
-/**
- * Sample class for Fragment of scan
- *
- * <p>
- * Created by daniel on 15/09/16.
- */
 public class ScanActivity extends AppCompatActivity {
 
     private Button btnType;
@@ -61,6 +56,8 @@ public class ScanActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
 
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {

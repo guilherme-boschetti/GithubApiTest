@@ -3,7 +3,7 @@ package br.com.test.githubapitest.model.repositories;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RepoItem {
+public class RepositoryItem {
 
     @SerializedName("name")
     @Expose

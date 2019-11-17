@@ -2,11 +2,11 @@ package br.com.test.githubapitest.apiservice;
 
 import java.io.IOException;
 
-import br.com.test.githubapitest.util.SharedPreferencesUtil;
 import okhttp3.Credentials;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.internal.annotations.EverythingIsNonNull;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -24,6 +24,7 @@ public class RetrofitClient {
             httpClient.addInterceptor(new Interceptor() {
 
                 @Override
+                @EverythingIsNonNull
                 public okhttp3.Response intercept(Chain chain) throws IOException {
 
                     Request request = chain.request().newBuilder()

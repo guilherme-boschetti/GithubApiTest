@@ -6,7 +6,7 @@
     android:background="@drawable/gradient_application_background"
     android:orientation="vertical"
     android:padding="@dimen/screen_padding"
-    tools:context=".controller.CommitsActivity">
+    tools:context=".controller.commits.CommitsActivity">
 
     <TextView
         android:id="@+id/txtRepoName"
@@ -28,7 +28,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="false" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

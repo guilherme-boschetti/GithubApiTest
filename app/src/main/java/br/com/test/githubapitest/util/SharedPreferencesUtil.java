@@ -25,81 +25,81 @@ public class SharedPreferencesUtil {
     /**
      * Return String value of map
      *
-     * @param key
-     * @param returnOnNull
-     * @return
+     * @param key the key
+     * @param returnOnNull value returned in case the not exist in map
+     * @return string value
      */
-    public String getValue(String key, String returnOnNull){
+    public String getValue(String key, String returnOnNull) {
         return preferences.getString(key, returnOnNull);
     }
 
     /**
      * Return  boolean value of map
      *
-     * @param key
-     * @param returnOnNull
-     * @return
+     * @param key the key
+     * @param returnOnNull value returned in case the not exist in map
+     * @return boolean value
      */
-    public boolean getValue(String key, boolean returnOnNull){
+    public boolean getValue(String key, boolean returnOnNull) {
         return preferences.getBoolean(key, returnOnNull);
     }
 
     /**
      * Return int value of map
      *
-     * @param key
-     * @param returnOnNull
-     * @return
+     * @param key the key
+     * @param returnOnNull value returned in case the not exist in map
+     * @return int value
      */
-    public int getValue(String key, int returnOnNull){
+    public int getValue(String key, int returnOnNull) {
         return preferences.getInt(key, returnOnNull);
     }
 
     /**
      * Set String value in map
      *
-     * @param key
-     * @param value
+     * @param key  the key
+     * @param value the string value
      */
-    public void setValue(String key, String value){
+    public void setValue(String key, String value) {
         editor = preferences.edit();
         editor.putString(key, value);
-        editor.commit();
+        editor.apply();
     }
 
 
     /**
      * Set boolean value in map
      *
-     * @param key
-     * @param value
+     * @param key  the key
+     * @param value the boolean value
      */
-    public void setValue(String key, boolean value){
+    public void setValue(String key, boolean value) {
         editor = preferences.edit();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     /**
      * Set int value in map
      *
-     * @param key
-     * @param value
+     * @param key  the key
+     * @param value the int value
      */
-    public void setValue(String key, int value){
+    public void setValue(String key, int value) {
         editor = preferences.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     /**
      * Remove a key of map
      *
-     * @param key
+     * @param key the key
      */
-    public void remove(String key){
+    public void remove(String key) {
         editor = preferences.edit();
         editor.remove(key);
-        editor.commit();
+        editor.apply();
     }
 }

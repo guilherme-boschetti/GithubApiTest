@@ -1,4 +1,4 @@
-package br.com.test.githubapitest.controller;
+package br.com.test.githubapitest.controller.repositories;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,12 +7,14 @@ import br.com.test.githubapitest.R;
 import br.com.test.githubapitest.adapter.repositories.RepositoriesAdapter;
 import br.com.test.githubapitest.apiservice.RetrofitClient;
 import br.com.test.githubapitest.apiservice.ApiServiceIntf;
-import br.com.test.githubapitest.model.repositories.RepoItem;
+import br.com.test.githubapitest.controller.others.OfflineActivity;
+import br.com.test.githubapitest.model.repositories.RepositoryItem;
 import br.com.test.githubapitest.util.AndroidUtil;
 import br.com.test.githubapitest.util.SharedPreferencesUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -34,7 +36,7 @@ public class RepositoriesActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
-    private List<RepoItem> repositoriesList;
+    private List<RepositoryItem> repositoriesList;
     private int page = 1;
 
     private static final int PER_PAGE = 20;
@@ -99,12 +101,13 @@ public class RepositoriesActivity extends AppCompatActivity {
 
             ApiServiceIntf apiService = RetrofitClient.createService(ApiServiceIntf.class, username, password);
 
-            Call<List<RepoItem>> call = apiService.getRepos(username, page, PER_PAGE);
-            call.enqueue(new Callback<List<RepoItem>>() {
+            Call<List<RepositoryItem>> call = apiService.getRepos(username, page, PER_PAGE);
+            call.enqueue(new Callback<List<RepositoryItem>>() {
                 @Override
-                public void onResponse(Call<List<RepoItem>> call, Response<List<RepoItem>> response) {
+                @EverythingIsNonNull
+                public void onResponse(Call<List<RepositoryItem>> call, Response<List<RepositoryItem>> response) {
                     if (response.code() >= 200 && response.code() <= 299) {
-                        List<RepoItem> reposResponse = response.body();
+                        List<RepositoryItem> reposResponse = response.body();
                         if (repositoriesList == null && reposResponse != null) {
                             repositoriesList = new ArrayList<>();
                         }
@@ -130,7 +133,8 @@ public class RepositoriesActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<RepoItem>> call, Throwable t) {
+                @EverythingIsNonNull
+                public void onFailure(Call<List<RepositoryItem>> call, Throwable t) {
                     progressDialog.hide();
                     Toast.makeText(RepositoriesActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }

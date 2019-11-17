@@ -1,4 +1,4 @@
-package br.com.test.githubapitest.controller;
+package br.com.test.githubapitest.controller.others;
 
 import androidx.appcompat.app.AppCompatActivity;
 import br.com.test.githubapitest.R;
