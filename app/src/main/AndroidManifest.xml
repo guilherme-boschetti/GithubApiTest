@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.test.githubapitest">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -21,8 +23,13 @@
         </activity>
         <activity android:name=".controller.OfflineActivity" />
         <activity android:name=".controller.InitActivity" />
-        <activity android:name=".controller.MainActivity" />
+        <activity android:name=".controller.ScanActivity" />
+        <activity android:name=".controller.RepositoriesActivity" />
         <activity android:name=".controller.CommitsActivity" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
     </application>
 
 </manifest>

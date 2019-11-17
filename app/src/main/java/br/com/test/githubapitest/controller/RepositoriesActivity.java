@@ -17,6 +17,7 @@ import retrofit2.Response;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
@@ -25,11 +26,13 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class RepositoriesActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private ProgressDialog progressDialog;
+    private TextView txtReposUsername;
     private SwipyRefreshLayout swipeRefresh;
+    private RecyclerView recyclerView;
+
+    private ProgressDialog progressDialog;
 
     private List<RepoItem> repositoriesList;
     private int page = 1;
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_repositories);
 
         // Verify internet
         if (!AndroidUtil.isNetworkAvailable(this)) {
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage(getString(R.string.loading));
         progressDialog.setCancelable(false);
 
+        txtReposUsername = findViewById(R.id.txtReposUsername);
         swipeRefresh = findViewById(R.id.swipeRefresh);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -90,13 +94,15 @@ public class MainActivity extends AppCompatActivity {
             String username = preferences.getValue("username", "");
             String password = preferences.getValue("password", "");
 
+            String repositoriesUsername = getString(R.string.repositories_of) + " " + username;
+            txtReposUsername.setText(repositoriesUsername);
+
             ApiServiceIntf apiService = RetrofitClient.createService(ApiServiceIntf.class, username, password);
 
             Call<List<RepoItem>> call = apiService.getRepos(username, page, PER_PAGE);
             call.enqueue(new Callback<List<RepoItem>>() {
                 @Override
-                public void onResponse(Call<List<RepoItem>> call, Response<List<RepoItem>> response)
-                {
+                public void onResponse(Call<List<RepoItem>> call, Response<List<RepoItem>> response) {
                     if (response.code() >= 200 && response.code() <= 299) {
                         List<RepoItem> reposResponse = response.body();
                         if (repositoriesList == null && reposResponse != null) {
@@ -105,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         if (repositoriesList != null) {
                             if (reposResponse != null) {
                                 if (reposResponse.isEmpty()) {
-                                    Toast.makeText(MainActivity.this, getString(R.string.no_more_repositories), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RepositoriesActivity.this, getString(R.string.no_more_repositories), Toast.LENGTH_SHORT).show();
                                 } else {
                                     repositoriesList.addAll(reposResponse);
                                     if (recyclerView.getAdapter() == null) {
@@ -118,19 +124,20 @@ public class MainActivity extends AppCompatActivity {
                         }
                         swipeRefresh.setRefreshing(false);
                     } else {
-                        Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RepositoriesActivity.this, response.message(), Toast.LENGTH_SHORT).show();
                     }
                     progressDialog.hide();
                 }
+
                 @Override
                 public void onFailure(Call<List<RepoItem>> call, Throwable t) {
                     progressDialog.hide();
-                    Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RepositoriesActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
             progressDialog.hide();
-            Toast.makeText(MainActivity.this,getString(R.string.problem_loading_repositories),Toast.LENGTH_SHORT).show();
+            Toast.makeText(RepositoriesActivity.this, getString(R.string.problem_loading_repositories), Toast.LENGTH_SHORT).show();
         }
     }
 }

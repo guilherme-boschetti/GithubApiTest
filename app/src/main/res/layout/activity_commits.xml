@@ -3,21 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_application_background"
     android:orientation="vertical"
-    android:background="@android:color/darker_gray"
+    android:padding="@dimen/screen_padding"
     tools:context=".controller.CommitsActivity">
+
+    <TextView
+        android:id="@+id/txtRepoName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:textAppearanceLarge"
+        tools:text="Repository: Repository Name" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:layout_margin="15dp"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:text="@string/commits" />
+        android:text="@string/commits"
+        android:textAppearance="?android:textAppearanceLarge" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:clickable="false" />
 
 </LinearLayout>
