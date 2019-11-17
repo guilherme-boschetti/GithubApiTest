@@ -1,6 +1,5 @@
 package br.com.test.githubapitest.adapter.commits;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import br.com.test.githubapitest.R;
 import br.com.test.githubapitest.model.commits.CommitItem;
@@ -17,21 +17,20 @@ import br.com.test.githubapitest.model.commits.CommitItem;
 public class CommitsAdapter extends RecyclerView.Adapter<CommitsAdapter.ViewHolder> {
 
     private List<CommitItem> commitItems;
-    private Context context;
 
-    public CommitsAdapter(Context context, List<CommitItem> commitItems) {
-        this.context = context;
+    public CommitsAdapter(List<CommitItem> commitItems) {
         this.commitItems = commitItems;
     }
 
     @Override
+    @NonNull
     public CommitsAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.commit_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(CommitsAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull CommitsAdapter.ViewHolder viewHolder, int position) {
         final CommitItem commitItem = commitItems.get(position);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());

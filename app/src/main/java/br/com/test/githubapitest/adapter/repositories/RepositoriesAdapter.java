@@ -9,22 +9,24 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import br.com.test.githubapitest.R;
-import br.com.test.githubapitest.controller.CommitsActivity;
-import br.com.test.githubapitest.model.repositories.RepoItem;
+import br.com.test.githubapitest.controller.commits.CommitsActivity;
+import br.com.test.githubapitest.model.repositories.RepositoryItem;
 
 public class RepositoriesAdapter extends RecyclerView.Adapter<RepositoriesAdapter.ViewHolder> {
 
-    private List<RepoItem> repoItems;
+    private List<RepositoryItem> repositoryItems;
     private Context context;
 
-    public RepositoriesAdapter(Context context, List<RepoItem> repoItems) {
+    public RepositoriesAdapter(Context context, List<RepositoryItem> repositoryItems) {
         this.context = context;
-        this.repoItems = repoItems;
+        this.repositoryItems = repositoryItems;
     }
 
     @Override
+    @NonNull
     public RepositoriesAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.repo_item, viewGroup, false);
         return new ViewHolder(view);
@@ -32,13 +34,13 @@ public class RepositoriesAdapter extends RecyclerView.Adapter<RepositoriesAdapte
 
     @Override
     public void onBindViewHolder(RepositoriesAdapter.ViewHolder viewHolder, int position) {
-        final RepoItem repoItem = repoItems.get(position);
-        viewHolder.txtRepoName.setText(repoItem.getName());
+        final RepositoryItem repositoryItem = repositoryItems.get(position);
+        viewHolder.txtRepoName.setText(repositoryItem.getName());
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, CommitsActivity.class);
-                intent.putExtra("repoName", repoItem.getName());
+                intent.putExtra("repoName", repositoryItem.getName());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
@@ -47,7 +49,7 @@ public class RepositoriesAdapter extends RecyclerView.Adapter<RepositoriesAdapte
 
     @Override
     public int getItemCount() {
-        return repoItems.size();
+        return repositoryItems.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

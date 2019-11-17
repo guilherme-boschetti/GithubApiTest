@@ -14,18 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.SplashActivity">
+        <activity android:name=".controller.others.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.OfflineActivity" />
-        <activity android:name=".controller.InitActivity" />
-        <activity android:name=".controller.ScanActivity" />
-        <activity android:name=".controller.RepositoriesActivity" />
-        <activity android:name=".controller.CommitsActivity" />
+        <activity android:name=".controller.others.OfflineActivity" />
+        <activity android:name=".controller.others.InitActivity" />
+        <activity android:name=".controller.others.ScanActivity" />
+        <activity android:name=".controller.repositories.RepositoriesActivity" />
+        <activity android:name=".controller.commits.CommitsActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"

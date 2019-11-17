@@ -1,4 +1,4 @@
-package br.com.test.githubapitest.controller;
+package br.com.test.githubapitest.controller.commits;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +12,7 @@ import br.com.test.githubapitest.util.SharedPreferencesUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -70,6 +71,7 @@ public class CommitsActivity extends AppCompatActivity {
             Call<List<CommitItem>> call = apiService.getCommits(username, repoName);
             call.enqueue(new Callback<List<CommitItem>>() {
                 @Override
+                @EverythingIsNonNull
                 public void onResponse(Call<List<CommitItem>> call, Response<List<CommitItem>> response) {
                     if (response.code() >= 200 && response.code() <= 299) {
                         List<CommitItem> commitsResponse = response.body();
@@ -80,7 +82,7 @@ public class CommitsActivity extends AppCompatActivity {
                             for (int i = 0; i < max; i++) {
                                 commits.add(commitsResponse.get(i));
                             }
-                            recyclerView.setAdapter(new CommitsAdapter(getApplicationContext(), commits));
+                            recyclerView.setAdapter(new CommitsAdapter(commits));
                         }
                     } else {
                         Toast.makeText(CommitsActivity.this, response.message(), Toast.LENGTH_SHORT).show();
@@ -89,6 +91,7 @@ public class CommitsActivity extends AppCompatActivity {
                 }
 
                 @Override
+                @EverythingIsNonNull
                 public void onFailure(Call<List<CommitItem>> call, Throwable t) {
                     progressDialog.hide();
                     Toast.makeText(CommitsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();

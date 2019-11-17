@@ -1,4 +1,4 @@
-package br.com.test.githubapitest.controller;
+package br.com.test.githubapitest.controller.others;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import br.com.test.githubapitest.R;
+import br.com.test.githubapitest.controller.repositories.RepositoriesActivity;
 import br.com.test.githubapitest.util.SharedPreferencesUtil;
 
 public class InitActivity extends AppCompatActivity {

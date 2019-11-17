@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="@dimen/screen_padding"
-    tools:context=".controller.OfflineActivity">
+    tools:context=".controller.others.OfflineActivity">
 
     <TextView
         android:id="@+id/txtOps"

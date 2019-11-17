@@ -1,10 +1,9 @@
-package br.com.test.githubapitest.controller;
+package br.com.test.githubapitest.controller.others;
 
 import androidx.appcompat.app.AppCompatActivity;
 import br.com.test.githubapitest.R;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 public class OfflineActivity extends AppCompatActivity {
 
