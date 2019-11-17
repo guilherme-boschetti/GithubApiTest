@@ -22,7 +22,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="@string/commits"
+        android:text="@string/last_commits"
         android:textAppearance="?android:textAppearanceLarge" />
 
     <androidx.recyclerview.widget.RecyclerView

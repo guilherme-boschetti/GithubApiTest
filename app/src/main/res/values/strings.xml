@@ -31,7 +31,7 @@
     <string name="problem_loading_repositories">Sorry. Problem loading repositories.</string>
 
     <string name="repository">Repository:</string>
-    <string name="commits">Last 5 Commits</string>
+    <string name="last_commits">Last Commits</string>
 
     <string name="author">Author:</string>
     <string name="date">Date:</string>
